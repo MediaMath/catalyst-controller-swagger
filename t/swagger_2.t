@@ -3,6 +3,7 @@ use warnings;
 
 use Test::Most;
 use Test::Deep;
+use JSON::XS;
 
 my $class = 'Swagger::2';
 use_ok $class;
@@ -31,7 +32,11 @@ cmp_deeply $test->swagger_data, {
   %{$test_data},
 };
 
-$test->add_resource('/foo', 'GET', {});
+$test->add_resource('/foo', 'GET', {
+  params => [
+    { name => 'foo' }
+  ]
+});
 
 cmp_deeply $test->swagger_data, {
   swaggerVersion => '2.0',
@@ -42,14 +47,27 @@ cmp_deeply $test->swagger_data, {
         summary      => '',
         description  => '',
         tags         => [],
-        parameters   => ignore(),
+        parameters   => [
+          {
+            name        => 'foo',
+            in          => 'query',
+            description => '',
+            required    => JSON::XS::false,
+            type        => 'string',
+            format      => '',
+          }
+        ],
         consume      => ignore(),
-        produces     => ignore(),
+        produces     => [],
         externalDocs => '',
       }
     }
   }
 };
 
+
+throws_ok(sub {$test->add_resource('/bar/{Foo}', 'GET', {params => [{in => 'path'}]})}, qr/The parameter must live within the path/);
+throws_ok(sub {$test->add_resource('/bar/{Foo}', 'GET', {params => [{name => 'Bar'}]})}, qr/The parameter must live within the path/);
+lives_ok(sub {$test->add_resource('/bar/{Foo}', 'GET', {params => [{name => 'Foo'}]})});
 
 done_testing;
