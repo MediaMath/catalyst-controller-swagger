@@ -13,12 +13,10 @@ sub api_docs : Local {
 
   my $configuration = $self->{swagger};
 
-  $configuration->{apiVersion} = delete $configuration->{api_version} || '';
-
-  my $swagger_data = {
-    swaggerVersion  => '1.2',
+  my $swag_generator = Swagger::get_generator({
+    swagger_version  => '1.2',
     %$configuration,
-  };
+  });
 
   my $swag_lookup = meta();
 
@@ -59,44 +57,14 @@ sub api_docs : Local {
        }
 
        if ($path) {
-         # Parameter generation
-         my @params;
-         if ($swag_data->{params}) {
-           for my $param(@{$swag_data->{params}}) {
-             my $param_type = $param->{in} ? $param->{in} :
-                              $method =~ /post|put/i ? 'form' : 'query';
-
-             push @params, {
-               allowMultiple => JSON::XS::true,
-               defaultValue  => $param->{default} // JSON::XS::false,
-               description   => $param->{description},
-               format        => $param->{type} // '',
-               required      => $param->{required} ? JSON::XS::true : JSON::XS::false,
-               name          => $param->{name},
-               type          => $param->{type} // 'string',
-               paramType     => $param_type,
-             };
-           }
-         }
-
-         push @{$swagger_data->{apis}}, {
-           path => $path,
-           operations => {
-             method     => $method,
-             summary    => $swag_data->{summary} || '',
-             notes      => $swag_data->{notes} || '',
-             type       => $swag_data->{type} || '',
-             nickname   => $method . '_' . $path, # Raisin style
-             parameters => \@params,
-           }
-         };
+         $swag_generator->add_resource($path, $method, $swag_data);
        }
       }
     }
 
   };
 
-  $c->response->body(JSON::XS::encode_json($swagger_data));
+  $c->response->body(JSON::XS::encode_json($swag_generator->swagger_data));
 }
 
 
