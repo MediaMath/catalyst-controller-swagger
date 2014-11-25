@@ -70,46 +70,47 @@ sub api_docs : Local {
 
 =head1 NAME
 
-Catalyst::Controller::Swagger
+     Catalyst::Controller::Swagger
 
 =head1 SYNOPSIS
 
-package MyApp::Controller::Root;
-use base 'Catalyst::Controller::Swagger';
-use Swagger qw(add_meta);
+     package MyApp::Controller::Root;
+     use base 'Catalyst::Controller::Swagger';
+     use Swagger qw(add_meta);
 
-__PACKAGE__->config(
-  swagger => {
-    api_version  => '2.2.3',
-    info          => {
-      title       => 'test project',
-      description => 'test description',
-    },
-  }
-};
+    __PACKAGE__->config(
+       swagger => {
+         api_version  => '2.2.3',
+         info          => {
+           title       => 'test project',
+           description => 'test description',
+         },
+       }
+     };
 
 
-add_meta {
-  action => 'test_one',
-  params => [
-    { name => 'start', type => 'integer' }
-  ],
-};
-sub test_one_base :Chained('/') :PathPart('test_one') :CaptureArgs(2) {
-  my ( $self, $c ) = @_;
-}
+     add_meta {
+        action => 'test_one',
+        params => [
+          { name => 'start', type => 'integer' }
+        ],
+     };
 
-sub test_one :Chained('test_one_base') :PathPart('foo') :Args(1): Swagger {
-  my ($self, $c) = @_;
+    sub test_one_base :Chained('/') :PathPart('test_one') :CaptureArgs(2) {
+      my ( $self, $c ) = @_;
+    }
 
-  $c->response->body("test_one");
-}
-
-# A swagger route can be flagged to be swagger with the :Swagger attribute
-sub test_two :Local :Swagger {
-  my ($self, $c) = @_;
-  $c->response->body('test_two');
-}
+    sub test_one :Chained('test_one_base') :PathPart('foo') :Args(1): Swagger {
+      my ($self, $c) = @_;
+    
+      $c->response->body("test_one");
+    }
+    
+    # A swagger route can be flagged to be swagger with the :Swagger attribute
+    sub test_two :Local :Swagger {
+      my ($self, $c) = @_;
+      $c->response->body('test_two');
+    }
 
 
 =head1 DESCRIPTION
