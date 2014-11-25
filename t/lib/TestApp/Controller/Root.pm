@@ -6,10 +6,11 @@ use base 'Catalyst::Controller::Swagger';
 use Swagger qw(add_meta);
 
 our $root_test_data = {
-  api_version  => '2.2.3',
-  info          => {
-    title       => 'test project',
-    description => 'test description',
+  swagger_version => '1.2',
+  api_version     => '2.2.3',
+  info            => {
+    title         => 'test project',
+    description   => 'test description',
   },
 };
 

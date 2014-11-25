@@ -11,30 +11,28 @@ use JSON::XS;
 sub api_docs : Local {
   my ($self, $c) = @_;
 
-  my $configuration = $self->{swagger};
-
-  my $swag_generator = Swagger::get_generator({
-    swagger_version  => '1.2',
-    %$configuration,
-  });
-
-  my $swag_lookup = meta();
+  my $swag_generator = Swagger::get_generator($self->{swagger});
+  my $swag_lookup    = meta();
 
   for my $controller_name ( $c->controllers ) {
     my $controller = $c->controller($controller_name);
     for my $action_method ($controller->get_action_methods) {
+
       my ($swagger_attr) = grep {/swagger/i} @{$action_method->attributes};
-      my $action_name = $action_method->name;
-      my $swag_data = $swag_lookup->{$action_name};
+
+      my $action_name    = $action_method->name;
+      my $swag_data      = $swag_lookup->{$action_name};
 
       if ($swagger_attr || $swag_data) {
 
-        my $action = $controller->action_for($action_name);
-        my ($method) = $action->list_extra_info->{HTTP_METHODS} ? $action->list_extra_info->{HTTP_METHODS}[0] : 'GET';
+        my $action   = $controller->action_for($action_name);
+        my ($method) = $action->list_extra_info->{HTTP_METHODS} ?
+                       $action->list_extra_info->{HTTP_METHODS}[0] :
+                       'GET';
 
         my $dispatcher = $c->dispatcher;
-        my $path = $swag_data->{path};
-        my $expanded = $dispatcher->expand_action($action);
+        my $path       = $swag_data->{path};
+        my $expanded   = $dispatcher->expand_action($action);
 
        unless ($path) {
          if ($expanded->can('chain')) {
