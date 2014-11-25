@@ -17,6 +17,8 @@ subtest "verify that model does what it should" => sub {
   my $root_test_data = $TestApp::Controller::Root::root_test_data;
   my $swagger_data = JSON::XS::decode_json($response->content);
 
+  warn $response->content;
+
   cmp_deeply $swagger_data, {
     swaggerVersion => '1.2',
     info           => {
@@ -26,13 +28,13 @@ subtest "verify that model does what it should" => sub {
     apiVersion     => '2.2.3',
     apis           => [
       {
-        path => '/test_one/*/*/foo/*',
+        path => '/test_one/{param1}/{param2}/foo/{param3}',
         operations => {
           method  => 'GET',
           summary => '',
           notes   => '',
           type    => '',
-          nickname => 'GET_/test_one/*/*/foo/*',
+          nickname => 'GET_/test_one/{param1}/{param2}/foo/{param3}',
           parameters => [{
             allowMultiple => JSON::XS::true,
             name          => 'start',
@@ -48,13 +50,13 @@ subtest "verify that model does what it should" => sub {
         },
       },
       {
-        path         => '/test_one/*/*/foo/*',
+        path         => '/test_one/{param1}/{param2}/foo/{param3}',
         operations   => {
           method     => 'POST',
           summary    => '',
           notes      => '',
           type => '',
-          nickname   => 'POST_/test_one/*/*/foo/*',
+          nickname   => 'POST_/test_one/{param1}/{param2}/foo/{param3}',
           parameters => [],
           summary    => '',
         },

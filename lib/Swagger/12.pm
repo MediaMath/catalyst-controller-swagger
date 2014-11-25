@@ -17,7 +17,7 @@ sub _build_swag_data {
   return $swagger_data;
 }
 
-sub add_resource {
+osub add_resource {
   my ($self, $path, $method, $node) = @_;
 
   my @params;

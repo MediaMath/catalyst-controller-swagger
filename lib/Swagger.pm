@@ -5,7 +5,7 @@ use Swagger::12;
 
 use Sub::Exporter -setup => {
   exports => [
-    qw(add_meta meta)
+    qw(add_meta generate_parameterized_path meta)
   ],
 };
 
@@ -18,6 +18,13 @@ sub add_meta($) {
 
 sub meta {
   return \%swag_lookup;
+}
+
+sub generate_parameterized_path($$) {
+  my ($path, $char) = @_;
+  my $i;
+  $path =~ s/\Q$char\E/"{param" . ++$i ."}"/eg;
+  return $path;
 }
 
 sub get_generator {

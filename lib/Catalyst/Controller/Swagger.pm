@@ -5,7 +5,7 @@ use namespace::autoclean;
 
 has swagger => (is => 'ro');
 
-use Swagger qw(meta);
+use Swagger qw(meta generate_parameterized_path);
 use JSON::XS;
 
 sub api_docs : Local {
@@ -48,7 +48,7 @@ sub api_docs : Local {
                               ($chain_part->attributes->{Args} ? join('/',('*') x $chain_part->attributes->{Args}[0]) : ()),
                             );
            }
-           $path = '/' . join('/', @path);
+           $path = generate_parameterized_path('/' . join('/', @path),'*');
          } else {
            $path = $c->uri_for($action)->path;
          }
