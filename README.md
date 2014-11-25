@@ -1,2 +1,0 @@
-catalyst-controller-swagger
-===========================
