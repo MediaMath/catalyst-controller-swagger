@@ -22,7 +22,9 @@ __PACKAGE__->config(
 add_meta {
   action => 'test_one',
   params => [
-    { name => 'start', type => 'integer' }
+    { name => 'param1', type => 'integer' },
+    { name => 'param2', type => 'string' },
+    { name => 'param3', type => 'string' },
   ],
 };
 
