@@ -45,7 +45,7 @@ subtest "verify that model does what it should" => sub {
               paramType     => undef,
               defaultValue  => JSON::XS::false,
               description   => undef,
-              format        => '',
+              format        => 'int32',
               paramType     => 'path',
               required      => JSON::XS::false,
               type          => 'integer',
@@ -56,7 +56,7 @@ subtest "verify that model does what it should" => sub {
               paramType     => undef,
               defaultValue  => JSON::XS::false,
               description   => undef,
-              format        => '',
+              format        => undef,
               paramType     => 'path',
               required      => JSON::XS::false,
               type          => 'string',
@@ -67,13 +67,19 @@ subtest "verify that model does what it should" => sub {
               paramType     => undef,
               defaultValue  => JSON::XS::false,
               description   => undef,
-              format        => '',
+              format        => undef,
               paramType     => 'path',
               required      => JSON::XS::false,
-              type          => '',
+              type          => 'string',
             },
           ],
           summary => '',
+          responseMessages => [
+            {
+              code    => 404,
+              message => 'Ah shoot johny the service is not here!',
+            }
+          ]
         }],
       },
       {
@@ -84,7 +90,6 @@ subtest "verify that model does what it should" => sub {
           notes      => '',
           type => '',
           nickname   => 'POST_/test_one/{param1}/{param2}/foo/{param3}',
-          parameters => [],
           summary    => '',
         }],
       },
@@ -96,7 +101,6 @@ subtest "verify that model does what it should" => sub {
           notes      => '',
           type => '',
           nickname   => 'GET_/test_two',
-          parameters => [],
           summary    => '',
         }],
       }

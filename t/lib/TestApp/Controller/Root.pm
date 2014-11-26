@@ -29,6 +29,9 @@ add_meta {
     { name => 'param2', type => 'string' },
     { name => 'param3' },
   ],
+  response_messages => [
+    { code => 404, message => 'Ah shoot johny the service is not here!'}
+  ],
 };
 
 sub test_one_base :Chained('/') :PathPart('test_one') :CaptureArgs(2) {
