@@ -27,7 +27,7 @@ subtest "verify that model does what it should" => sub {
     },
     apiVersion     => '2.2.3',
     authorizations => {},
-    basePath       => 'http://localhost:3000/',
+    basePath       => 'http://localhost:3000',
     resourcePath   => '/',
     apis           => [
       {

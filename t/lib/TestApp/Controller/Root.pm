@@ -13,7 +13,7 @@ our $root_test_data = {
     description   => 'test description',
   },
   resource_path => "/",
-  base_path => 'http://localhost:3000/', #required
+  base_path => 'http://localhost:3000', #required
   authorizations => {},
 };
 

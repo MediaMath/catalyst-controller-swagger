@@ -29,17 +29,19 @@ my %types = (
 
 sub _build_swag_data {
   my $self = shift;
-  delete $self->configuration->{swagger_version};
-  die "A resource path must be supplied in the configuration" unless $self->configuration->{base_path};
 
-  my ($base_path, $api_version, $resource_path) =
-    delete @{$self->configuration}{qw(base_path api_version resource_path)};
+  delete $self->configuration->{swagger_version};
+
+  unless (@{$self->configuration}{qw(basePath apiVersion resourcePath)}) {
+    @{$self->configuration}{qw(basePath apiVersion resourcePath)} =
+      delete @{$self->configuration}{qw(base_path api_version resource_path)};
+  }
+
+  die "A base path must be supplied in the configuration"
+    unless $self->configuration->{basePath};
 
   my $swagger_data = {
     swaggerVersion => $SWAG_VERSION,
-    apiVersion     => $api_version,
-    basePath       => $base_path,
-    resourcePath   => $resource_path,
     %{$self->configuration},
   };
   return $swagger_data;
@@ -77,7 +79,8 @@ sub add_resource {
       }
 
       # For simplicity just default to a "string" type.
-      my $type = $types{$param->{type}} || $param->{type} || $types{'string'};
+      $param->{type} ||= 'string';
+      my $type = $types{$param->{type}} || $param->{type};
       push @params, {
         allowMultiple => JSON::XS::true,
         defaultValue  => $param->{default} || JSON::XS::false,
