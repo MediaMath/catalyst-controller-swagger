@@ -30,7 +30,7 @@ sub generate_parameterized_path($$) {
 sub get_generator {
   my ($configuration) = @_;
 
-  $configuration->{swagger_version} // '1.2';
+  $configuration->{swagger_version} ||= '1.2';
   $configuration->{apiVersion} = delete $configuration->{api_version} || '';
 
   if ($configuration->{swagger_version} eq '1.2') {

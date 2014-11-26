@@ -12,6 +12,9 @@ our $root_test_data = {
     title         => 'test project',
     description   => 'test description',
   },
+  resource_path => "/",
+  base_path => 'http://localhost:3000/', #required
+  authorizations => {},
 };
 
 __PACKAGE__->config(
@@ -24,7 +27,7 @@ add_meta {
   params => [
     { name => 'param1', type => 'integer' },
     { name => 'param2', type => 'string' },
-    { name => 'param3', type => 'string' },
+    { name => 'param3' },
   ],
 };
 

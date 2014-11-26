@@ -1,17 +1,26 @@
 package Swagger::12;
 use Moose;
 use namespace::autoclean;
-
+use JSON::XS;
 my $SWAG_VERSION = '1.2';
 
 has configuration => ( is => 'ro', required => 1);
 has swagger_data => (is => 'rw', builder => '_build_swag_data');
 
+use Types::Standard qw(Str);
+
 sub _build_swag_data {
   my $self = shift;
   delete $self->configuration->{swagger_version};
+  die "A resource path must be supplied in the configuration" unless $self->configuration->{base_path};
+  my ($base_path, $api_version, $resource_path) =
+    delete @{$self->configuration}{qw(base_path api_version resource_path)};
+
   my $swagger_data = {
-    swaggerVersion  => $SWAG_VERSION,
+    swaggerVersion => $SWAG_VERSION,
+    apiVersion     => $api_version,
+    basePath       => $base_path,
+    resourcePath   => $resource_path,
     %{$self->configuration},
   };
   return $swagger_data;
@@ -42,10 +51,10 @@ sub add_resource {
         allowMultiple => JSON::XS::true,
         defaultValue  => $param->{default} // JSON::XS::false,
         description   => $param->{description},
-        format        => $param->{type} // '',
+        format        => $param->{format} || '',
         required      => $param->{required} ? JSON::XS::true : JSON::XS::false,
         name          => $param->{name},
-        type          => $param->{type} // 'string',
+        type          => $param->{type} || '',
         paramType     => $param_type,
       };
     }
@@ -56,14 +65,15 @@ sub add_resource {
 
   push @{$self->swagger_data->{apis}}, {
     path => $path,
-    operations => {
+    operations => [{
       method     => $method,
       summary    => $node->{summary} || '',
       notes      => $node->{notes} || '',
       type       => $node->{type} || '',
       nickname   => $method . '_' . $path, # Raisin style
+#      response
       parameters => \@params,
-    }
+    }]
   };
 }
 

@@ -26,10 +26,13 @@ subtest "verify that model does what it should" => sub {
       description  => 'test description',
     },
     apiVersion     => '2.2.3',
+    authorizations => {},
+    basePath       => 'http://localhost:3000/',
+    resourcePath   => '/',
     apis           => [
       {
         path => '/test_one/{param1}/{param2}/foo/{param3}',
-        operations => {
+        operations => [{
           method  => 'GET',
           summary => '',
           notes   => '',
@@ -42,7 +45,7 @@ subtest "verify that model does what it should" => sub {
               paramType     => undef,
               defaultValue  => JSON::XS::false,
               description   => undef,
-              format        => 'integer',
+              format        => '',
               paramType     => 'path',
               required      => JSON::XS::false,
               type          => 'integer',
@@ -53,7 +56,7 @@ subtest "verify that model does what it should" => sub {
               paramType     => undef,
               defaultValue  => JSON::XS::false,
               description   => undef,
-              format        => 'string',
+              format        => '',
               paramType     => 'path',
               required      => JSON::XS::false,
               type          => 'string',
@@ -64,18 +67,18 @@ subtest "verify that model does what it should" => sub {
               paramType     => undef,
               defaultValue  => JSON::XS::false,
               description   => undef,
-              format        => 'string',
+              format        => '',
               paramType     => 'path',
               required      => JSON::XS::false,
-              type          => 'string',
+              type          => '',
             },
           ],
           summary => '',
-        },
+        }],
       },
       {
         path         => '/test_one/{param1}/{param2}/foo/{param3}',
-        operations   => {
+        operations   => [{
           method     => 'POST',
           summary    => '',
           notes      => '',
@@ -83,11 +86,11 @@ subtest "verify that model does what it should" => sub {
           nickname   => 'POST_/test_one/{param1}/{param2}/foo/{param3}',
           parameters => [],
           summary    => '',
-        },
+        }],
       },
       {
         path         => '/test_two',
-        operations   => {
+        operations   => [{
           method     => 'GET',
           summary    => '',
           notes      => '',
@@ -95,7 +98,7 @@ subtest "verify that model does what it should" => sub {
           nickname   => 'GET_/test_two',
           parameters => [],
           summary    => '',
-        },
+        }],
       }
     ],
   };
