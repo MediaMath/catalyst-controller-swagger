@@ -7,7 +7,7 @@ has swagger => (is => 'ro');
 
 use Swagger qw(meta generate_parameterized_path);
 use JSON::XS;
-
+# ABSTRACT: Swagger For Catalyst
 sub api_docs : Local {
   my ($self, $c) = @_;
 
@@ -102,10 +102,8 @@ sub api_docs : Local {
 
     sub test_one :Chained('test_one_base') :PathPart('foo') :Args(1): Swagger {
       my ($self, $c) = @_;
-    
       $c->response->body("test_one");
     }
-    
     # A swagger route can be flagged to be swagger with the :Swagger attribute
     sub test_two :Local :Swagger {
       my ($self, $c) = @_;
@@ -118,5 +116,14 @@ sub api_docs : Local {
 Add swagger meta data to ones routes. Currently one can either use the Swagger module
 to add explicit data or tag a route via the :Swagger attribute.
 
+=cut
+
+=head1 COPYRIGHT & LICENSE
+ 
+Copyright 2014, Logan Bell/MediaMath
+ 
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+ 
 =cut
 
