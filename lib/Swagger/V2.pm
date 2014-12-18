@@ -1,4 +1,4 @@
-package Swagger::2;
+package Swagger::V2;
 
 use Moose;
 use namespace::autoclean;

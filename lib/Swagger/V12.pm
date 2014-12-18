@@ -1,4 +1,4 @@
-package Swagger::12;
+package Swagger::V12;
 use Moose;
 use namespace::autoclean;
 use HTTP::Status;

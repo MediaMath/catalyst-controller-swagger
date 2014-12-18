@@ -5,7 +5,7 @@ use Test::Most;
 use Test::Deep;
 use JSON::XS;
 
-my $class = 'Swagger::2';
+my $class = 'Swagger::V2';
 use_ok $class;
 
 my $test_data = {
