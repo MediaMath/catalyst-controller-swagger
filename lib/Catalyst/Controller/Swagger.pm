@@ -100,7 +100,7 @@ sub api_docs : Local {
       my ( $self, $c ) = @_;
     }
 
-    sub test_one :Chained('test_one_base') :PathPart('foo') :Args(1): Swagger {
+    sub test_one :Chained('test_one_base') :PathPart('foo') :Args(1) :Swagger {
       my ($self, $c) = @_;
       $c->response->body("test_one");
     }
@@ -115,6 +115,43 @@ sub api_docs : Local {
 
 Add swagger meta data to ones routes. Currently one can either use the Swagger module
 to add explicit data or tag a route via the :Swagger attribute.
+
+=head2 :Swagger Attribute
+
+When this attribute is applied to an action meta data that is implicit to the route will 
+be exposed to the api_docs route. The data that is exposed include the following: path, method,
+and route nickname. Any additional meta data that would need to be exposed would need to use 
+the Swagger::add_meta function to associate it.
+
+Here is an example of what the default swagger output looks like:
+      {
+        path         => '/test_two',
+        operations   => [{
+          method     => 'GET',
+          summary    => '',
+          notes      => '',
+          type => '',
+          nickname   => 'GET_/test_two',
+          summary    => '',
+        }],
+      }
+
+=head2 api_docs route
+
+This is a route that is exposed that will output a JSON data structure that is Swagger 1.2
+compatible. 
+
+=head2 Swagger::add_meta
+
+The add_meta function allows a developer to associate other allowed swagger meta data. For example
+params would specify what sort of parameters a route would accept:
+  
+     add_meta {
+        action => 'test_one', # name of route
+        params => [
+          { name => 'start', type => 'integer' }
+        ],
+     };
 
 =cut
 
