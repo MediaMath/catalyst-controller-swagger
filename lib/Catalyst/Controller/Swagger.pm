@@ -118,6 +118,26 @@ to add explicit data or tag a route via the :Swagger attribute.
 
 =cut
 
+=head1 CONTRIBUTING
+
+The code for `catalyst-controller-swagger` is hosted on GitHub at:
+ 
+   https://github.com/mediamath/catalyst-controller-swagger/
+ 
+If you would like to contribute code, documentation, tests, or bugfixes, follow these steps:
+ 
+  1. Fork the project on GitHub.
+  2. Clone the fork to your local machine.
+  3. Make your changes and push them back up to your GitHub account.
+  4. Send a "pull request" with a brief description of your changes, and a link to a JIRA 
+  ticket if there is one.
+ 
+If you are unfamiliar with GitHub, start with their excellent documentation here:
+ 
+  https://help.github.com/articles/fork-a-repo
+
+=cut
+
 =head1 COPYRIGHT & LICENSE
  
 Copyright 2014, Logan Bell/MediaMath
