@@ -42,8 +42,8 @@
 
 # DESCRIPTION
 
-Add swagger meta data to ones routes. Currently one can either use the Swagger module
-to add explicit data or tag a route via the :Swagger attribute.
+Add swagger meta data to any Catalyst route. This module will expose an "api\_docs" route
+which will contain JSON that is Swagger 1.2 compatible.
 
 ## :Swagger Attribute
 
