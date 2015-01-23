@@ -184,7 +184,7 @@ If you are unfamiliar with GitHub, start with their excellent documentation here
 
 =head1 COPYRIGHT & LICENSE
  
-Copyright 2014, Logan Bell/MediaMath
+Copyright 2014, Logan Bell & John Napiorkowski / MediaMath
  
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
