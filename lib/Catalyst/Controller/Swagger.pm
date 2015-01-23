@@ -124,6 +124,7 @@ and route nickname. Any additional meta data that would need to be exposed would
 the Swagger::add_meta function to associate it.
 
 Here is an example of what the default swagger output looks like:
+
       {
         path         => '/test_two',
         operations   => [{
