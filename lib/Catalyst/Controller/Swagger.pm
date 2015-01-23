@@ -118,6 +118,12 @@ to add explicit data or tag a route via the :Swagger attribute.
 
 =cut
 
+=head1 Swagger
+
+For further information on Swagger and what it is see: http://www.swagger.io
+
+=cut
+
 =head1 CONTRIBUTING
 
 The code for `catalyst-controller-swagger` is hosted on GitHub at:
