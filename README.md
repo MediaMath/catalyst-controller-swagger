@@ -42,14 +42,14 @@
 
 # DESCRIPTION
 
-Add swagger meta data to any Catalyst route. This module will expose an "api\_docs" route
+Add swagger metadata to any Catalyst route. This module will expose an "api\_docs" route
 which will contain JSON that is Swagger 1.2 compatible.
 
 ## :Swagger Attribute
 
-When this attribute is applied to an action meta data that is implicit to the route will 
+When this attribute is applied to an action metadata that is implicit to the route will 
 be exposed to the api\_docs route. The data that is exposed include the following: path, method,
-and route nickname. Any additional meta data that would need to be exposed would need to use 
+and route nickname. Any additional metadata that would need to be exposed would need to use 
 the Swagger::add\_meta function to associate it.
 
 Here is an example of what the default swagger output looks like:
@@ -73,7 +73,7 @@ compatible.
 
 ## Swagger::add\_meta
 
-The add\_meta function allows a developer to associate other allowed swagger meta data. For example
+The add\_meta function allows a developer to associate other allowed swagger metadata. For example
 params would specify what sort of parameters a route would accept:
 
      add_meta {
