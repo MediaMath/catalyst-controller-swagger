@@ -6,8 +6,9 @@ WriteMakefile(
         VERSION_FROM  => "lib/Catalyst/Controller/Swagger.pm",
         LICENSE       => "perl_5",
         TEST_REQUIRES => {
-                "Test::Deep" => 0,
-                "Test::More" => 0,
+                "Test::Deep"      => 0,
+                "Test::Exception" => 0,
+                "Test::More"      => 0,
         },
         PREREQ_PM     => {
                 "Catalyst"      => 0,
