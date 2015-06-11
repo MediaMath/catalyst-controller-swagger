@@ -9,6 +9,7 @@ WriteMakefile(
                 "Test::Deep"      => 0,
                 "Test::Exception" => 0,
                 "Test::More"      => 0,
+                "File::FindLib"   => 0,
         },
         PREREQ_PM     => {
                 "Catalyst"      => 0,
