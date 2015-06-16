@@ -1,9 +1,11 @@
 use strict;
 use warnings;
 
-use Test::Most;
+use Test::More;
+use Test::Exception;
 use Test::Deep;
 use JSON::XS;
+use File::FindLib 'lib';
 
 my $class = 'Swagger::V2';
 use_ok $class;

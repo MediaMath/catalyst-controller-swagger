@@ -3,6 +3,8 @@ use Moose;
 BEGIN { extends 'Catalyst::Controller' };
 use namespace::autoclean;
 
+our $VERSION = 0.001;
+
 has swagger => (is => 'ro');
 
 use Swagger qw(meta generate_parameterized_path);

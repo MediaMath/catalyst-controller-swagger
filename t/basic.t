@@ -1,9 +1,10 @@
 use strict;
 use warnings;
 
-use Test::Most;
+use Test::More;
 use Test::Deep;
 use JSON::XS;
+use File::FindLib 'lib';
 
 my $class = 'Catalyst::Controller::Swagger';
 
