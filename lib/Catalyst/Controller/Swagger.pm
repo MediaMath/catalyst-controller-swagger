@@ -3,7 +3,7 @@ use Moose;
 BEGIN { extends 'Catalyst::Controller' };
 use namespace::autoclean;
 
-our $VERSION = 0.0.1;
+our $VERSION = 0.001;
 
 has swagger => (is => 'ro');
 
