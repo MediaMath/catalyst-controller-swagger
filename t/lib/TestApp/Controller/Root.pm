@@ -46,7 +46,7 @@ sub test_one :Chained('test_one_base') :PathPart('foo') :Args(1): Swagger  {
 
 sub test_one_post :Chained('test_one_base') :PathPart('foo') :Args(1): Method('POST'): Swagger {
   my ($self, $c) = @_;
-  $c->respons->body("test_one POST");
+  $c->response->body("test_one POST");
 }
 
 sub test_two :Local :Swagger {
