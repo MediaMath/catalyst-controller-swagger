@@ -3,7 +3,7 @@ use Moose;
 BEGIN { extends 'Catalyst::Controller' };
 use namespace::autoclean;
 
-our $VERSION = 0.001;
+our $VERSION = 0.002;
 
 has swagger => (is => 'ro');
 
@@ -46,8 +46,8 @@ sub api_docs : Local {
            my @path;
            for my $chain_part (@{$expanded->chain}) {
              push @path, join('/',$chain_part->attributes->{PathPart}[0],
-                              ($chain_part->attributes->{CaptureArgs} ? join('/',('*') x $chain_part->attributes->{CaptureArgs}[0]) : ()),
-                              ($chain_part->attributes->{Args} ? join('/',('*') x $chain_part->attributes->{Args}[0]) : ()),
+                              ($chain_part->attributes->{CaptureArgs}[0] ? join('/',('*') x $chain_part->attributes->{CaptureArgs}[0]) : ()),
+                              ($chain_part->attributes->{Args}[0] ? join('/',('*') x $chain_part->attributes->{Args}[0]) : ()),
                             );
            }
            $path = generate_parameterized_path('/' . join('/', @path),'*');
