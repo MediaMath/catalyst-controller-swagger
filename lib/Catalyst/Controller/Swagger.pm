@@ -120,9 +120,9 @@ which will contain JSON that is Swagger 1.2 compatible.
 
 =head2 :Swagger Attribute
 
-When this attribute is applied to an action meta data that is implicit to the route will 
+When this attribute is applied to an action meta data that is implicit to the route will
 be exposed to the api_docs route. The data that is exposed include the following: path, method,
-and route nickname. Any additional meta data that would need to be exposed would need to use 
+and route nickname. Any additional meta data that would need to be exposed would need to use
 the Swagger::add_meta function to associate it.
 
 Here is an example of what the default swagger output looks like:
@@ -142,13 +142,13 @@ Here is an example of what the default swagger output looks like:
 =head2 api_docs route
 
 This is a route that is exposed that will output a JSON data structure that is Swagger 1.2
-compatible. 
+compatible.
 
 =head2 Swagger::add_meta
 
 The add_meta function allows a developer to associate other allowed swagger meta data. For example
 params would specify what sort of parameters a route would accept:
-  
+
      add_meta {
         action => 'test_one', # name of route
         params => [
@@ -167,29 +167,29 @@ For further information on Swagger and what it is see: http://www.swagger.io
 =head1 CONTRIBUTING
 
 The code for `catalyst-controller-swagger` is hosted on GitHub at:
- 
+
    https://github.com/mediamath/catalyst-controller-swagger/
- 
+
 If you would like to contribute code, documentation, tests, or bugfixes, follow these steps:
- 
+
   1. Fork the project on GitHub.
   2. Clone the fork to your local machine.
   3. Make your changes and push them back up to your GitHub account.
-  4. Send a "pull request" with a brief description of your changes, and a link to a JIRA 
+  4. Send a "pull request" with a brief description of your changes, and a link to a JIRA
   ticket if there is one.
- 
+
 If you are unfamiliar with GitHub, start with their excellent documentation here:
- 
+
   https://help.github.com/articles/fork-a-repo
 
 =cut
 
 =head1 COPYRIGHT & LICENSE
- 
+
 Copyright 2015, Logan Bell & John Napiorkowski / MediaMath
- 
+
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
- 
+
 =cut
 

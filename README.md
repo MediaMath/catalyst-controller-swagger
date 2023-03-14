@@ -47,9 +47,9 @@ which will contain JSON that is Swagger 1.2 compatible.
 
 ## :Swagger Attribute
 
-When this attribute is applied to an action metadata that is implicit to the route will 
+When this attribute is applied to an action metadata that is implicit to the route will
 be exposed to the api\_docs route. The data that is exposed include the following: path, method,
-and route nickname. Any additional metadata that would need to be exposed would need to use 
+and route nickname. Any additional metadata that would need to be exposed would need to use
 the Swagger::add\_meta function to associate it.
 
 Here is an example of what the default swagger output looks like:
@@ -69,7 +69,7 @@ Here is an example of what the default swagger output looks like:
 ## api\_docs route
 
 This is a route that is exposed that will output a JSON data structure that is Swagger 1.2
-compatible. 
+compatible.
 
 ## Swagger::add\_meta
 
@@ -92,16 +92,16 @@ For further information on Swagger and what it is see: http://www.swagger.io
 The code for \`catalyst-controller-swagger\` is hosted on GitHub at:
 
       https://github.com/mediamath/catalyst-controller-swagger/
-    
+
 
 If you would like to contribute code, documentation, tests, or bugfixes, follow these steps:
 
      1. Fork the project on GitHub.
      2. Clone the fork to your local machine.
      3. Make your changes and push them back up to your GitHub account.
-     4. Send a "pull request" with a brief description of your changes, and a link to a JIRA 
+     4. Send a "pull request" with a brief description of your changes, and a link to a JIRA
      ticket if there is one.
-    
+
 
 If you are unfamiliar with GitHub, start with their excellent documentation here:
 
